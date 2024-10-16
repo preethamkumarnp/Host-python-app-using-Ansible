@@ -71,3 +71,13 @@ This playbook automates the setup of a Python application with a MySQL database 
 13. **Start Flask Web Server**
     - Starts the Flask web server to host the application.
 
+# Installation
+
+## Clone the Repository
+
+Replace `<repository-url>` with the actual URL of your repository.
+
+```bash
+git clone <repository-url>
+cd <repository-directory>
+
