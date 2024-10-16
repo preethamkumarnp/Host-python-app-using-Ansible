@@ -82,3 +82,49 @@ This playbook automates the setup of a Python application with a MySQL database 
 
 2. Ensure SSH Access: Verify that you have SSH access to your target hosts.
 3. Edit the Playbook (if necessary): Open the deploy_python_web_app.yml file and adjust any configurations or variables as needed.
+
+# Usage
+
+To run the playbook, follow these steps:
+
+1.  Modify Your Inventory File
+
+    Create or edit an inventory file to specify your target hosts. Example:
+
+    ```ini
+    [all]
+    your_target_host ansible_python_interpreter=/usr/bin/python3
+
+2.  Run the Playbook: Execute the following command, replacing deploy_python_web_app.yml with your playbook file name:
+    ```bash
+    ansible-playbook deploy_python_web_app.yml -i inventory
+
+# Project Configuration Guide
+
+## Configuration Options
+
+Before running the playbook, you may want to adjust the following configurations:
+
+### MySQL User and Password
+- **User**: Change the MySQL user (currently set to `bob`) as needed.
+- **Password**: Update the password for the MySQL user as necessary.
+
+### Database Names
+- Modify the names of the databases created:
+  - `bobdata`
+  - `employee_db`
+  
+  Change these names if your project requires different database names.
+
+### Application Code
+- Ensure that `app.py` is in the correct directory.
+- If necessary, update the path in the "Copy source code" task to point to the correct location of `app.py`.
+
+## Getting Started
+Follow these steps to set up your environment:
+
+1. Adjust the configurations as described above.
+2. Run the playbook to apply the changes.
+
+## License
+This project is licensed under the MIT License.
