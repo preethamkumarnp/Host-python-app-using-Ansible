@@ -98,7 +98,7 @@ To run the playbook, follow these steps:
     ```bash
     ansible-playbook deploy_python_web_app.yml -i inventory
 
-## Configuration
+# Configuration
 
 Before running the playbook, you may want to adjust the following configurations:
 
@@ -117,7 +117,7 @@ Before running the playbook, you may want to adjust the following configurations
 - Ensure that `app.py` is in the correct directory.
 - If necessary, update the path in the "Copy source code" task to point to the correct location of `app.py`.
 
-## Getting Started
+# Getting Started
 Follow these steps to set up your environment:
 
 1. Adjust the configurations as described above.
