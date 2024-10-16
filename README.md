@@ -11,8 +11,7 @@ This Ansible playbook automates the deployment of a Python web application using
 - [Usage](#usage)
 - [Example Inventory File](#example-inventory-file)
 - [Configuration](#configuration)
-- [Notes](#notes)
-- [License](#license)
+- [Getting Started](#getting-started)
 
 ## Introduction
 
@@ -99,9 +98,7 @@ To run the playbook, follow these steps:
     ```bash
     ansible-playbook deploy_python_web_app.yml -i inventory
 
-# Project Configuration Guide
-
-## Configuration Options
+## Configuration
 
 Before running the playbook, you may want to adjust the following configurations:
 
@@ -126,5 +123,4 @@ Follow these steps to set up your environment:
 1. Adjust the configurations as described above.
 2. Run the playbook to apply the changes.
 
-## License
-This project is licensed under the MIT License.
+
