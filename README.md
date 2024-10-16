@@ -76,9 +76,9 @@ This playbook automates the setup of a Python application with a MySQL database 
 ## Clone the Repository
 1. Replace `<repository-url>` with the actual URL of your repository.
 
-```bash
-git clone <repository-url>
-cd <repository-directory>
+ ```bash
+ git clone <repository-url>
+ cd <repository-directory>
 
 2. Ensure SSH Access: Verify that you have SSH access to your target hosts.
 
