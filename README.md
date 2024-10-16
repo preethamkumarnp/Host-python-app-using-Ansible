@@ -74,12 +74,11 @@ This playbook automates the setup of a Python application with a MySQL database 
 # Installation
 
 ## Clone the Repository
-1. Replace `<repository-url>` with the actual URL of your repository.
-
- ```bash
- git clone <repository-url>
- cd <repository-directory>
+1.  Replace `<repository-url>` with the actual URL of your repository.
+ 
+    ```bash
+    git clone <repository-url>
+    cd <repository-directory>
 
 2. Ensure SSH Access: Verify that you have SSH access to your target hosts.
-
 3. Edit the Playbook (if necessary): Open the deploy_python_web_app.yml file and adjust any configurations or variables as needed.
