@@ -1,0 +1,93 @@
+---
+- name: Deploying python web application
+  hosts: all
+  become: true
+  gather_facts: false
+  vars:
+    ansible_python_interpreter: /usr/bin/python3  
+  tasks:
+    - name: Enable Universe repository
+      apt_repository:
+        repo: "ppa:deadsnakes/ppa"  # Optional, if you want a newer Python
+        state: present
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install python and its dependencies
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+       - python3
+       - python3-full
+       - python3-setuptools
+       - python3-dev
+       - build-essential
+       - python3-pip
+
+    - name: Cretae a virtual machine envirornment in opt/myapp/venv
+      command: python3 -m venv /opt/myapp/venv
+      args: 
+       creates: opt/myapp/venv
+
+    - name: Upgrade pip inside the virtual environment
+      command: /opt/myapp/venv/bin/pip install --upgrade pip
+    
+    - name: Install PyMySQL using pip in virtual environment
+      command: /opt/myapp/venv/bin/pip install PyMySQL
+      args: 
+       chdir: /opt/myapp 
+
+    - name: Install Mysql Database
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present  
+      loop:
+       - mysql-server
+       - mysql-client
+    - name: Start MySql server
+      ansible.builtin.service:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: start up the mysql service
+      shell: "service mysql start"
+    - name: ensure mysql is enabled to run on startup
+      service: name=mysql state=started enabled=true
+    
+    - name: Create a new database with name 'bobdata'
+      community.mysql.mysql_db:
+        name: bobdata
+        state: present
+
+    - name: Application Databas
+      community.mysql.mysql_db:
+         name: employee_db
+         state: present
+
+    - name: Create database user with name 'bob' and password '12345' with all database privileges
+      community.mysql.mysql_user:
+        name: bob
+        password: 12345
+        priv: '*.*:ALL'
+        state: present   
+    
+    - name: Install flask dependencies
+      ansible.builtin.pip:
+        name: "{{ item }}"
+        state: present  
+      loop:
+        - flask
+        - flask-mysql     
+     
+    - name: Copy source code
+      ansible.builtin.copy:
+        src: app.py 
+        dest: /opt/app.py
+
+    - name: Start web server
+      ansible.builtin.shell: FLASK_APP =/opt/app.py nohup flask run --host=0.0.0.0 &
+             
